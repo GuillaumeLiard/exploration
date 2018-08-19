@@ -1,14 +1,27 @@
 <template>
   <div class="model">
-	  model
+	  model : operator OR <br>
 		<button @click="this.trainModel" class="prediction__button">
 			train
 		</button>
 		<button @click="this.predict" class="prediction__button">
 			predict :
 		</button>
+			<div class="inputs">
+				For :
+					A = true
+					B = false
+			</div>
 			<div class="prediction">
-				prediction: {{this.prediction}}
+				A OR B is true at : {{this.prediction ? this.prediction[0] : ''}} % <br>
+				A OR B is false at : {{this.prediction ? this.prediction[1] : ''}} %
+			</div>
+			<div class="info">
+				vuejs, tensorflowjs <br>
+				sequential model with 1 hidden layer of 1 node,<br>
+				activation function : 'sigmoid',<br>
+				optimizer: 'stochastic gradient descent',<br>
+				loss function: 'meanSquaredError'
 			</div>
 	</div>
 </template>
@@ -26,15 +39,16 @@
 					prediction: null,
 					history: null,
 					inputsArray: [1, 0],
-					// function AND
+					// function OR
 					trainingSet: {
+						// [A, B]
 						xs: [
 							[0, 0],
 							[0, 1],
 							[1, 0],
 							[1, 1]
 						],
-						// [expected probability of true, expected probability of false]
+						// [expected probability of A OR B, expected probability of ! (A OR B)]
 						ys: [
 							[0 , 1],
 							[1, 0],
@@ -99,5 +113,8 @@
 </script>
 
 <style>
+	.info {
 
+		margin-top: 50px;
+	}
 </style>
