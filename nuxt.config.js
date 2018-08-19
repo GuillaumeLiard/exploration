@@ -1,6 +1,6 @@
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
-    base: '/<repository-name>/'
+    base: '/exploration/'
   }
 } : {}
 
@@ -41,5 +41,8 @@ module.exports = {
       }
     }
   },
-	...routerBase
+	...routerBase,
+	generate: {
+		dir: 'docs'
+	}
 }
