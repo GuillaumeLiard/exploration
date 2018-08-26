@@ -13,8 +13,7 @@
 					B = false
 			</div>
 			<div class="prediction">
-				A OR B is true at : {{this.prediction ? this.prediction[0] : ''}} % <br>
-				A OR B is false at : {{this.prediction ? this.prediction[1] : ''}} %
+				A OR B is true at : {{this.prediction ? this.prediction[0] : ''}} %
 			</div>
 			<div class="info">
 				vuejs, tensorflowjs <br>
@@ -48,12 +47,12 @@
 							[1, 0],
 							[1, 1]
 						],
-						// [expected probability of A OR B, expected probability of ! (A OR B)]
+						// [expected probability of A OR B
 						ys: [
-							[0 , 1],
-							[1, 0],
-							[1, 0],
-							[1, 0]
+							[0],
+							[1],
+							[1],
+							[1]
 						],
 						xs_tensor: null,
 						ys_tensor: null,
@@ -78,7 +77,7 @@
 				},
 				initOutputLayer: function() {
 					this.outputLayer = tf.layers.dense({
-						units: 2,
+						units: 1,
 						activation: 'sigmoid'
 					})
 				},
