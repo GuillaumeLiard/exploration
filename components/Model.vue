@@ -1,20 +1,19 @@
 <template>
   <div class="model">
 	  model : operator OR <br>
-		<button @click="this.trainModel" class="prediction__button">
+		<PredictionButton @click="this.train">
 			train
-		</button>
-		<button @click="this.predict" class="prediction__button">
-			predict :
-		</button>
+		</PredictionButton>
+		<PredictionButton @click="this.predict">
+			predict
+		</PredictionButton>
 			<div class="inputs">
 				For :
 					A = true
 					B = false
 			</div>
 			<div class="prediction">
-				A OR B is true at : {{this.prediction ? this.prediction[0] : ''}} % <br>
-				A OR B is false at : {{this.prediction ? this.prediction[1] : ''}} %
+				A OR B is true at : {{this.prediction ? this.prediction[0] : ''}} %
 			</div>
 			<div class="info">
 				vuejs, tensorflowjs <br>
@@ -28,8 +27,9 @@
 
 <script>
 	import * as tf from '@tensorflow/tfjs'
-
+	import PredictionButton from '~/components/PredictionButton.vue'
 		export default {
+			components: {PredictionButton},
 			data: function() {
 				return {
 					model: null,
@@ -50,11 +50,17 @@
 						],
 						// [expected probability of A OR B, expected probability of ! (A OR B)]
 						ys: [
-							[0 , 1],
-							[1, 0],
-							[1, 0],
-							[1, 0]
+							[0],
+							[1],
+							[1],
+							[1]
 						],
+						// ys: [
+						// 	[0 , 1],
+						// 	[1, 0],
+						// 	[1, 0],
+						// 	[1, 0]
+						// ],
 						xs_tensor: null,
 						ys_tensor: null,
 					}
@@ -78,7 +84,7 @@
 				},
 				initOutputLayer: function() {
 					this.outputLayer = tf.layers.dense({
-						units: 2,
+						units: 1,
 						activation: 'sigmoid'
 					})
 				},
