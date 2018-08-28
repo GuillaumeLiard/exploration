@@ -13,7 +13,7 @@ const createStore = () => {
 				inputs: null,
 				prediction: null,
 				history: null,
-				inputsArray: [1, 0],
+
 				// function OR
 				trainingSet: {
 					// [A, B]
@@ -33,7 +33,8 @@ const createStore = () => {
 					xs_tensor: null,
 					ys_tensor: null
 				}
-			}
+			},
+			inputsArray: [1, 0]
 		},
 		mutations
 	})

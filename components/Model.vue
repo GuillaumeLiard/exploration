@@ -7,21 +7,21 @@
 		<button @click="this.predict" class="prediction__button">
 			predict :
 		</button>
-			<div class="inputs">
-				For :
-					A = true
-					B = false
-			</div>
-			<div class="prediction">
-				A OR B is true at : {{this.$store.state.model.prediction ? this.$store.state.model.prediction[0] : ''}} %
-			</div>
-			<div class="info">
-				vuejs, tensorflowjs <br>
-				sequential model with 1 hidden layer of 1 node,<br>
-				activation function : 'sigmoid',<br>
-				optimizer: 'stochastic gradient descent',<br>
-				loss function: 'meanSquaredError'
-			</div>
+		<div class="inputs">
+			For :
+				A = true
+				B = false
+		</div>
+		<div class="prediction">
+			A OR B is true at : {{this.$store.state.model.prediction ? this.$store.state.model.prediction[0] : ''}} %
+		</div>
+		<div class="info">
+			vuejs, tensorflowjs <br>
+			sequential model with 1 hidden layer of 1 node,<br>
+			activation function : 'sigmoid',<br>
+			optimizer: 'stochastic gradient descent',<br>
+			loss function: 'meanSquaredError'
+		</div>
 	</div>
 </template>
 
@@ -39,7 +39,7 @@
 					// inputs: null,
 					// prediction: null,
 					// history: null,
-					inputsArray: [1, 0],
+					// inputsArray: [1, 0],
 					// // function OR
 					trainingSet: {
 						// [A, B]
@@ -104,7 +104,7 @@
 					})
 				},
 				initInputs: function() {
-					this.inputs = tf.tensor2d([this.inputsArray])
+					this.inputs = tf.tensor2d([this.$store.state.inputsArray])
 					this.trainingSet.xs_tensor = tf.tensor2d(this.trainingSet.xs)
 					this.trainingSet.ys_tensor = tf.tensor2d(this.trainingSet.ys)
 				},
