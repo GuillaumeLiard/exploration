@@ -1,14 +1,14 @@
 const mutations = {
   addHiddenLayer(state, payload) {
-		console.log(state)
-		console.log(payload)
     state.model.layers.hiddenLayer = payload
 		return state
   },
 	setCurrentPrediction(state, payload) {
-		console.log(state)
-		console.log(payload)
     state.model.prediction = payload
+		return state
+  },
+	setHistory(state, payload) {
+    state.model.history = payload
 		return state
   }
 }

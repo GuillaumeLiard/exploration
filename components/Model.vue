@@ -109,10 +109,12 @@
 					this.trainingSet.ys_tensor = tf.tensor2d(this.trainingSet.ys)
 				},
 				trainModel: function() {
-					this.history = this.model.fit(this.trainingSet.xs_tensor, this.trainingSet.ys_tensor, {
-						batchSize: 10,
-						epochs: 3
-					})
+					this.$store.commit('setHistory',
+						this.model.fit(this.trainingSet.xs_tensor, this.trainingSet.ys_tensor, {
+							batchSize: 10,
+							epochs: 3
+						})
+					)
 				},
 				predict: function() {
 					this.$store.commit('setCurrentPrediction',
