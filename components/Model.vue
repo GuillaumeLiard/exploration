@@ -13,7 +13,7 @@
 					B = false
 			</div>
 			<div class="prediction">
-				A OR B is true at : {{this.prediction ? this.prediction[0] : ''}} %
+				A OR B is true at : {{this.$store.state.model.prediction ? this.$store.state.model.prediction[0] : ''}} %
 			</div>
 			<div class="info">
 				vuejs, tensorflowjs <br>
@@ -31,14 +31,16 @@
 		export default {
 			data: function() {
 				return {
-					model: null,
-					hiddenLayer: null,
-					outputLayer: null,
-					inputs: null,
-					prediction: null,
-					history: null,
+					// model: null,
+					layers: {
+						// hiddenLayer: null,
+						outputLayer: null
+					},
+					// inputs: null,
+					// prediction: null,
+					// history: null,
 					inputsArray: [1, 0],
-					// function OR
+					// // function OR
 					trainingSet: {
 						// [A, B]
 						xs: [
@@ -55,11 +57,12 @@
 							[1]
 						],
 						xs_tensor: null,
-						ys_tensor: null,
+						ys_tensor: null
 					}
 				}
 			},
 			mounted: function() {
+				console.log(this.$store)
 				this.initHiddenLayer()
 				this.initOutputLayer()
 				this.initModel()
@@ -69,22 +72,29 @@
 			},
 			methods: {
 				initHiddenLayer: function() {
-					this.hiddenLayer = tf.layers.dense({
-						units: 1,
-						inputShape: [2],
-						activation: 'sigmoid'
-					})
+					this.$store.commit('addHiddenLayer',
+						tf.layers.dense({
+							units: 1,
+							inputShape: [2],
+							activation: 'sigmoid'
+						})
+					)
+					// this.layers.hiddenLayer = tf.layers.dense({
+					// 	units: 1,
+					// 	inputShape: [2],
+					// 	activation: 'sigmoid'
+					// })
 				},
 				initOutputLayer: function() {
-					this.outputLayer = tf.layers.dense({
+					this.layers.outputLayer = tf.layers.dense({
 						units: 1,
 						activation: 'sigmoid'
 					})
 				},
 				initModel: function() {
 					this.model = tf.sequential()
-					this.model.add(this.hiddenLayer);
-					this.model.add(this.outputLayer);
+					this.model.add(this.$store.state.model.layers.hiddenLayer);
+					this.model.add(this.layers.outputLayer);
 				},
 				compileModel: function() {
 					// console.log('todo compile model')
@@ -105,7 +115,9 @@
 					})
 				},
 				predict: function() {
-					this.prediction = this.model.predict(this.inputs).dataSync()
+					this.$store.commit('setCurrentPrediction',
+						this.model.predict(this.inputs).dataSync()
+					)
 				}
 			}
 		}
