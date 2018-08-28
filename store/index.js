@@ -10,7 +10,7 @@ const createStore = () => {
 					hiddenLayer: null,
 					outputLayer: null
 				},
-				inputs: null,
+				// inputs: null,
 				prediction: null,
 				history: null,
 
@@ -34,7 +34,12 @@ const createStore = () => {
 					ys_tensor: null
 				}
 			},
-			inputsArray: [1, 0]
+			inputs2D: [
+				[1, 0],
+				[1, 1],
+				[0, 1],
+				[0, 0],
+			]
 		},
 		mutations
 	})

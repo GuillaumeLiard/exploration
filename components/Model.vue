@@ -7,8 +7,10 @@
 		<button @click="this.predict" class="prediction__button">
 			predict :
 		</button>
-		<Inputs/>
-		<Prediction/>
+		<div class="face2face">
+			<Inputs/>
+			<Prediction/>
+		</div>
 		<div class="info">
 			vuejs, tensorflowjs <br>
 			sequential model with 1 hidden layer of 1 node,<br>
@@ -36,7 +38,6 @@
 						// hiddenLayer: null,
 						outputLayer: null
 					},
-					// inputs: null,
 					// prediction: null,
 					// history: null,
 					// inputsArray: [1, 0],
@@ -104,7 +105,7 @@
 					})
 				},
 				initInputs: function() {
-					this.inputs = tf.tensor2d([this.$store.state.inputsArray])
+					this.inputs = tf.tensor2d(this.$store.state.inputs2D)
 					this.trainingSet.xs_tensor = tf.tensor2d(this.trainingSet.xs)
 					this.trainingSet.ys_tensor = tf.tensor2d(this.trainingSet.ys)
 				},
@@ -129,5 +130,9 @@
 	.info {
 
 		margin-top: 50px;
+	}
+	.face2face {
+		display: flex;
+		justify-content: center;
 	}
 </style>
