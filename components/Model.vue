@@ -7,14 +7,8 @@
 		<button @click="this.predict" class="prediction__button">
 			predict :
 		</button>
-		<div class="inputs">
-			For :
-				A = true
-				B = false
-		</div>
-		<div class="prediction">
-			A OR B is true at : {{this.$store.state.model.prediction ? this.$store.state.model.prediction[0] : ''}} %
-		</div>
+		<Inputs/>
+		<Prediction/>
 		<div class="info">
 			vuejs, tensorflowjs <br>
 			sequential model with 1 hidden layer of 1 node,<br>
@@ -27,8 +21,14 @@
 
 <script>
 	import * as tf from '@tensorflow/tfjs'
+	import Inputs from '~/components/Inputs'
+	import Prediction from '~/components/Prediction'
 
 		export default {
+			components: {
+				Inputs,
+				Prediction
+			},
 			data: function() {
 				return {
 					// model: null,
