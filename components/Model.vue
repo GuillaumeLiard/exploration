@@ -1,10 +1,10 @@
 <template>
   <div class="model">
 	  model : operator OR <br>
-		<PredictionButton @click="this.train">
-			train
-		</PredictionButton>
-		<button @click="this.predict" class="prediction__button">
+		<button @click="train">
+			train :
+		</button>
+		<button @click="predict">
 			predict :
 		</button>
 		<div class="face2face">
@@ -19,12 +19,14 @@
 	import * as tf from '@tensorflow/tfjs'
 	import Inputs from '~/components/Inputs'
 	import Prediction from '~/components/Prediction'
+	// import Button from '~/components/Button'
 	import Info from '~/components/Info'
 
 		export default {
 			components: {
 				Inputs,
 				Prediction,
+				// Button,
 				Info
 			},
 			mounted: function() {
@@ -67,7 +69,7 @@
 					this.$store.state.model.trainingSet.xs_tensor = tf.tensor2d(this.$store.state.model.trainingSet.xs)
 					this.$store.state.model.trainingSet.ys_tensor = tf.tensor2d(this.$store.state.model.trainingSet.ys)
 				},
-				trainModel: function() {
+				train: function() {
 					this.$store.commit('setHistory',
 						this.model.fit(this.$store.state.model.trainingSet.xs_tensor, this.$store.state.model.trainingSet.ys_tensor, {
 							batchSize: 10,
