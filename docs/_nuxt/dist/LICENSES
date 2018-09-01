@@ -1,3 +1,9 @@
+/*!
+ * Vue.js v2.5.17
+ * (c) 2014-2018 Evan You
+ * Released under the MIT License.
+ */
+
 /**
  * @license
  * Copyright 2018 Google LLC. All Rights Reserved.
@@ -40,6 +46,12 @@
  */
 
 /**
+ * vuex v3.0.1
+ * (c) 2017 Evan You
+ * @license MIT
+ */
+
+/**
  * @license
  * Copyright 2018 Google LLC. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,12 +66,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * =============================================================================
- */
-
-/*!
- * Vue.js v2.5.17
- * (c) 2014-2018 Evan You
- * Released under the MIT License.
  */
 
 /*!
