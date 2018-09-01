@@ -33,24 +33,16 @@
 			},
 			data: function() {
 				return {
-					// model: null,
 					layers: {
-						// hiddenLayer: null,
 						outputLayer: null
 					},
-					// prediction: null,
-					// history: null,
-					// inputsArray: [1, 0],
-					// // function OR
 					trainingSet: {
-						// [A, B]
 						xs: [
 							[0, 0],
 							[0, 1],
 							[1, 0],
 							[1, 1]
 						],
-						// [expected probability of A OR B
 						ys: [
 							[0],
 							[1],
@@ -69,7 +61,6 @@
 				this.initModel()
 				this.compileModel()
 				this.initInputs()
-				// this.predict()
 			},
 			methods: {
 				initHiddenLayer: function() {
@@ -80,11 +71,6 @@
 							activation: 'sigmoid'
 						})
 					)
-					// this.layers.hiddenLayer = tf.layers.dense({
-					// 	units: 1,
-					// 	inputShape: [2],
-					// 	activation: 'sigmoid'
-					// })
 				},
 				initOutputLayer: function() {
 					this.layers.outputLayer = tf.layers.dense({
@@ -98,7 +84,6 @@
 					this.model.add(this.layers.outputLayer);
 				},
 				compileModel: function() {
-					// console.log('todo compile model')
 					this.model.compile({
 						optimizer: tf.train.sgd(0.1),
 						loss: 'meanSquaredError'
