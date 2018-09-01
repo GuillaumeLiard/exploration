@@ -1,12 +1,12 @@
 <template>
 	<div class="prediction" :style="{width, height}">
 		<PredictionItem v-for="(value, key) in predictions"
+			:prediction="getPrediction(value.prediction)"
 			:left="getLeft(key)"
 			:top="getTop(key)"
 			:width="itemWidth"
 			:height="itemHeight"
 			:key="key">
-				{{getPrediction(value.prediction)}}
 		</PredictionItem>
 	</div>
 </template>
