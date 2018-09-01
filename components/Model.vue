@@ -31,29 +31,6 @@
 				Inputs,
 				Prediction
 			},
-			data: function() {
-				return {
-					layers: {
-						outputLayer: null
-					},
-					trainingSet: {
-						xs: [
-							[0, 0],
-							[0, 1],
-							[1, 0],
-							[1, 1]
-						],
-						ys: [
-							[0],
-							[1],
-							[1],
-							[1]
-						],
-						xs_tensor: null,
-						ys_tensor: null
-					}
-				}
-			},
 			mounted: function() {
 				console.log(this.$store)
 				this.initHiddenLayer()
@@ -73,7 +50,7 @@
 					)
 				},
 				initOutputLayer: function() {
-					this.layers.outputLayer = tf.layers.dense({
+					this.$store.state.model.layers.outputLayer = tf.layers.dense({
 						units: 1,
 						activation: 'sigmoid'
 					})
@@ -81,7 +58,7 @@
 				initModel: function() {
 					this.model = tf.sequential()
 					this.model.add(this.$store.state.model.layers.hiddenLayer);
-					this.model.add(this.layers.outputLayer);
+					this.model.add(this.$store.state.model.layers.outputLayer);
 				},
 				compileModel: function() {
 					this.model.compile({
@@ -91,12 +68,12 @@
 				},
 				initInputs: function() {
 					this.inputs = tf.tensor2d(this.$store.state.inputs2D)
-					this.trainingSet.xs_tensor = tf.tensor2d(this.trainingSet.xs)
-					this.trainingSet.ys_tensor = tf.tensor2d(this.trainingSet.ys)
+					this.$store.state.model.trainingSet.xs_tensor = tf.tensor2d(this.$store.state.model.trainingSet.xs)
+					this.$store.state.model.trainingSet.ys_tensor = tf.tensor2d(this.$store.state.model.trainingSet.ys)
 				},
 				trainModel: function() {
 					this.$store.commit('setHistory',
-						this.model.fit(this.trainingSet.xs_tensor, this.trainingSet.ys_tensor, {
+						this.model.fit(this.$store.state.model.trainingSet.xs_tensor, this.$store.state.model.trainingSet.ys_tensor, {
 							batchSize: 10,
 							epochs: 3
 						})
