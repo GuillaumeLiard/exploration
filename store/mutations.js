@@ -1,16 +1,14 @@
-const mutations = {
-  addHiddenLayer(state, payload) {
-    state.model.layers.hiddenLayer = payload
+export default {
+	addHiddenLayer(state, payload) {
+		state.model.layers.hiddenLayer = payload
 		return state
-  },
+	},
 	setCurrentPrediction(state, payload) {
-    state.model.prediction = payload
+		state.model.prediction = payload
 		return state
-  },
+	},
 	setHistory(state, payload) {
-    state.model.history = payload
+		state.model.history = payload
 		return state
-  }
+	}
 }
-
-export default mutations
