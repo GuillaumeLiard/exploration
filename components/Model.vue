@@ -1,12 +1,15 @@
 <template>
   <div class="model">
 	  model : operator OR <br>
-		<button @click="train">
+		<button @click="start">
+			start
+		</button>
+		<!-- <button @click="train">
 			train :
 		</button>
 		<button @click="predict">
 			predict :
-		</button>
+		</button> -->
 		<div class="face2face">
 			<Inputs/>
 			<Prediction/>
@@ -65,6 +68,10 @@
 					this.inputs = tf.tensor2d(this.$store.state.inputs2D)
 					this.$store.state.model.trainingSet.xs_tensor = tf.tensor2d(this.$store.state.model.trainingSet.xs)
 					this.$store.state.model.trainingSet.ys_tensor = tf.tensor2d(this.$store.state.model.trainingSet.ys)
+				},
+				start: function() {
+					this.$store.dispatch('trainLoop')
+					this.$store.dispatch('predictLoop')
 				},
 				train: function() {
 					this.$store.dispatch('train')
