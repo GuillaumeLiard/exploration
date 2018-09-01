@@ -1,3 +1,5 @@
+import * as tf from '@tensorflow/tfjs'
+
 export default {
 	addHiddenLayer(state, payload) {
 		state.model.layers.hiddenLayer = payload
@@ -10,5 +12,23 @@ export default {
 	setHistory(state, payload) {
 		state.model.history = payload
 		return state
-	}
+	},
+	createModel(state, payload) {
+		state.model.model = payload
+		return state
+	},
+	increment(state) {
+		state.counter++
+	},
+	addLayer(state, payload) {
+		state.model.model.add(payload)
+		return state
+	},
+	compileModel(state, payload) {
+		state.model.model.compile({
+			optimizer: tf.train.sgd(0.1),
+			loss: 'meanSquaredError'
+		})
+		return state
+	},
 }

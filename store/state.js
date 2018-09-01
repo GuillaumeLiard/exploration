@@ -1,4 +1,5 @@
 export default  {
+	counter: 0,
 	train: {
 		mode: 'manual'
 	},

@@ -1,7 +1,7 @@
 <template>
   <div class="model">
 	  model : operator OR <br>
-		<button @click="train">
+		<button @click="train3">
 			train :
 		</button>
 		<button @click="predict">
@@ -54,15 +54,16 @@
 					})
 				},
 				initModel: function() {
-					this.model = tf.sequential()
-					this.model.add(this.$store.state.model.layers.hiddenLayer);
-					this.model.add(this.$store.state.model.layers.outputLayer);
+					this.$store.commit('createModel', tf.sequential())
+					this.$store.commit('addLayer', this.$store.state.model.layers.hiddenLayer)
+					this.$store.commit('addLayer', this.$store.state.model.layers.outputLayer)
 				},
 				compileModel: function() {
-					this.model.compile({
-						optimizer: tf.train.sgd(0.1),
-						loss: 'meanSquaredError'
-					})
+					this.$store.commit('compileModel')
+					// this.$store.model.model.compile({
+					// 	optimizer: tf.train.sgd(0.1),
+					// 	loss: 'meanSquaredError'
+					// })
 				},
 				initInputs: function() {
 					this.inputs = tf.tensor2d(this.$store.state.inputs2D)
@@ -77,10 +78,24 @@
 						})
 					)
 				},
+				train2: function() {
+					console.log(this.$store)
+					this.$store.dispatch('incrementAsync')
+				},
+				train3: function() {
+					this.$store.dispatch('train')
+					// this.$store.commit('setHistory',
+					// 	this.model.fit(this.$store.state.model.trainingSet.xs_tensor, this.$store.state.model.trainingSet.ys_tensor, {
+					// 		batchSize: 10,
+					// 		epochs: 3
+					// 	})
+					// )
+				},
 				predict: function() {
-					this.$store.commit('setCurrentPrediction',
-						this.model.predict(this.inputs).dataSync()
-					)
+					this.$store.dispatch('predict')
+					// this.$store.commit('setCurrentPrediction',
+					// 	this.model.predict(this.inputs).dataSync()
+					// )
 				}
 			}
 		}
