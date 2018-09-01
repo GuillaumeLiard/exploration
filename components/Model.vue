@@ -11,13 +11,7 @@
 			<Inputs/>
 			<Prediction/>
 		</div>
-		<div class="info">
-			vuejs, tensorflowjs <br>
-			sequential model with 1 hidden layer of 1 node,<br>
-			activation function : 'sigmoid',<br>
-			optimizer: 'stochastic gradient descent',<br>
-			loss function: 'meanSquaredError'
-		</div>
+		<Info />
 	</div>
 </template>
 
@@ -25,11 +19,13 @@
 	import * as tf from '@tensorflow/tfjs'
 	import Inputs from '~/components/Inputs'
 	import Prediction from '~/components/Prediction'
+	import Info from '~/components/Info'
 
 		export default {
 			components: {
 				Inputs,
-				Prediction
+				Prediction,
+				Info
 			},
 			mounted: function() {
 				console.log(this.$store)
