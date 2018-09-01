@@ -6,7 +6,6 @@
 			:width="itemWidth"
 			:height="itemHeight"
 			:key="key">
-				<!-- {{value.text}} -->
 				{{getPrediction(value.prediction)}}
 		</PredictionItem>
 	</div>
@@ -26,27 +25,15 @@
 				sizeColumn: 200,
 				predictions: [
 					{
-						text: `
-							A OR B is true at
-						`,
 						prediction: 0
 					},
 					{
-						text: `
-							A OR B is true at
-						`,
 						prediction: 1
 					},
 					{
-						text: `
-							A OR B is true at
-						`,
 						prediction: 2
 					},
 					{
-						text: `
-							A OR B is true at
-						`,
 						prediction: 3
 					}
 				]
