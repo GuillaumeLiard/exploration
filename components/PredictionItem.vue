@@ -1,5 +1,5 @@
 <template>
-	<div class="item" :style="{left, top, width}">
+	<div class="item" :style="{left, top, width, backgroundColor: backgroundColor()}">
 		<div class="content">
 			{{readablePrediction()}}
 		</div>
@@ -15,12 +15,22 @@
 			'width'
 		],
 		methods: {
-			readablePrediction: function() {
+			readablePrediction: function(){
 				if (typeof this.prediction === 'string') {
 					return this.prediction
 				} else if (typeof this.prediction === 'number'){
 					return this.prediction.toFixed(3)
 				}
+			},
+			getPercentPrediction: function() {
+				if (typeof this.prediction === 'number') {
+					return this.readablePrediction() * 100
+				} else {
+					return 0
+				}
+			},
+			backgroundColor: function(){
+				return `hsl(0, 100%, ${this.getPercentPrediction()}%)`;
 			}
 		}
 	}
