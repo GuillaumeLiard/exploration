@@ -1,6 +1,7 @@
 <template>
 	<div class="item" :style="{left, top, width, backgroundColor: backgroundColor()}">
 		<div class="content">
+			{{text}}
 			{{readablePrediction()}}
 		</div>
 	</div>
@@ -9,6 +10,7 @@
 <script>
 	export default {
 		props: [
+			'text',
 			'prediction',
 			'left',
 			'top',

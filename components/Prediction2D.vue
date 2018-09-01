@@ -1,6 +1,7 @@
 <template>
 	<div class="prediction" :style="{width, height}">
 		<PredictionItem v-for="(value, key) in predictions"
+			:text="value.text"
 			:prediction="getPrediction(value.prediction)"
 			:left="getLeft(key)"
 			:top="getTop(key)"
@@ -25,15 +26,19 @@
 				sizeColumn: 200,
 				predictions: [
 					{
+						text: 'true OR false = ',
 						prediction: 0
 					},
 					{
+						text: 'true OR true = ',
 						prediction: 1
 					},
 					{
+						text: 'false OR true = ',
 						prediction: 2
 					},
 					{
+						text: 'false OR false = ',
 						prediction: 3
 					}
 				]

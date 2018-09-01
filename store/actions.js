@@ -15,6 +15,7 @@ export default {
 				epochs: 3
 			}
 		)
+		commit('increment')
 		commit('setHistory', history)
 	},
 	async trainLoop({ commit, dispatch, state }) {
@@ -26,6 +27,7 @@ export default {
 				epochs: 3
 			}
 		)
+		commit('increment')
 		commit('setHistory', history)
 		dispatch('trainLoop')
 	},

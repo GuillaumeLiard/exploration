@@ -4,6 +4,9 @@
 		<button @click="start">
 			start
 		</button>
+		<p>
+			iterations : {{counter()}}
+		</p>
 		<!-- <button @click="train">
 			train :
 		</button>
@@ -11,7 +14,7 @@
 			predict :
 		</button> -->
 		<div class="face2face">
-			<Inputs/>
+			<!-- <Inputs/> -->
 			<Prediction/>
 		</div>
 		<Info />
@@ -41,6 +44,9 @@
 				this.initInputs()
 			},
 			methods: {
+				counter: function() {
+					return this.$store.state.counter
+				},
 				initHiddenLayer: function() {
 					this.$store.commit('addHiddenLayer',
 						tf.layers.dense({
