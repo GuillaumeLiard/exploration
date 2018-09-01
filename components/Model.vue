@@ -18,7 +18,7 @@
 <script>
 	import * as tf from '@tensorflow/tfjs'
 	import Inputs from '~/components/Inputs'
-	import Prediction from '~/components/Prediction'
+	import Prediction from '~/components/Prediction2D'
 	// import Button from '~/components/Button'
 	import Info from '~/components/Info'
 
