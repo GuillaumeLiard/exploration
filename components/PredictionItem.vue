@@ -32,7 +32,7 @@
 				}
 			},
 			backgroundColor: function(){
-				return `hsl(0, 100%, ${this.getPercentPrediction()}%)`;
+				return `hsl(120, 100%, ${this.getPercentPrediction()}%)`;
 			}
 		}
 	}
