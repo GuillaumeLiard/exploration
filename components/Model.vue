@@ -36,42 +36,14 @@
 				Info
 			},
 			mounted: function() {
-				console.log(this.$store)
-				// this.initHiddenLayer()
-				this.initOutputLayer()
-				// this.initModel()
 				this.$store.commit('createModel', tf.sequential())
 				this.$store.dispatch('addLayers')
-				// this.$store.commit('addLayer', this.$store.state.model.layers.outputLayer)
-				this.compileModel()
+				this.$store.dispatch('compileModel')
 				this.initInputs()
 			},
 			methods: {
 				counter: function() {
 					return this.$store.state.counter
-				},
-				initHiddenLayer: function() {
-					// this.$store.commit('addHiddenLayer',
-					// 	tf.layers.dense({
-					// 		units: 1,
-					// 		inputShape: [2],
-					// 		activation: 'sigmoid'
-					// 	})
-					// )
-				},
-				initOutputLayer: function() {
-					this.$store.state.model.layers.outputLayer = tf.layers.dense({
-						units: 1,
-						activation: 'sigmoid'
-					})
-				},
-				initModel: function() {
-					// this.$store.commit('createModel', tf.sequential())
-					// this.$store.commit('addLayer', this.$store.state.model.layers.hiddenLayer)
-					// this.$store.commit('addLayer', this.$store.state.model.layers.outputLayer)
-				},
-				compileModel: function() {
-					this.$store.dispatch('compileModel')
 				},
 				initInputs: function() {
 					this.inputs = tf.tensor2d(this.$store.state.inputs2D)

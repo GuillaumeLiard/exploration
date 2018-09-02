@@ -12,6 +12,13 @@ export default  {
 					inputShape: [2],
 					activation: 'sigmoid'
 				}
+			},
+			{
+				type: 'dense',
+				params: {
+					units: 1,
+					activation: 'sigmoid'
+				}
 			}
 		]
 	},
