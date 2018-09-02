@@ -14,13 +14,13 @@ export default  {
 					activation: 'sigmoid'
 				}
 			},
-			// {
-			// 	type: 'dense',
-			// 	params: {
-			// 		units: 1,
-			// 		activation: 'sigmoid'
-			// 	}
-			// }
+			{
+				type: 'dense',
+				params: {
+					units: 1,
+					activation: 'sigmoid'
+				}
+			}
 		],
 		optimizer: {
 			type: 'sgd',
