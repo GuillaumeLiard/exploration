@@ -37,10 +37,12 @@
 			},
 			mounted: function() {
 				console.log(this.$store)
-				this.$store.dispatch('addLayers')
 				// this.initHiddenLayer()
 				this.initOutputLayer()
-				this.initModel()
+				// this.initModel()
+				this.$store.commit('createModel', tf.sequential())
+				this.$store.dispatch('addLayers')
+				// this.$store.commit('addLayer', this.$store.state.model.layers.outputLayer)
 				this.compileModel()
 				this.initInputs()
 			},
@@ -49,13 +51,13 @@
 					return this.$store.state.counter
 				},
 				initHiddenLayer: function() {
-					this.$store.commit('addHiddenLayer',
-						tf.layers.dense({
-							units: 1,
-							inputShape: [2],
-							activation: 'sigmoid'
-						})
-					)
+					// this.$store.commit('addHiddenLayer',
+					// 	tf.layers.dense({
+					// 		units: 1,
+					// 		inputShape: [2],
+					// 		activation: 'sigmoid'
+					// 	})
+					// )
 				},
 				initOutputLayer: function() {
 					this.$store.state.model.layers.outputLayer = tf.layers.dense({
@@ -64,9 +66,9 @@
 					})
 				},
 				initModel: function() {
-					this.$store.commit('createModel', tf.sequential())
-					this.$store.commit('addLayer', this.$store.state.model.layers.hiddenLayer)
-					this.$store.commit('addLayer', this.$store.state.model.layers.outputLayer)
+					// this.$store.commit('createModel', tf.sequential())
+					// this.$store.commit('addLayer', this.$store.state.model.layers.hiddenLayer)
+					// this.$store.commit('addLayer', this.$store.state.model.layers.outputLayer)
 				},
 				compileModel: function() {
 					this.$store.dispatch('compileModel')

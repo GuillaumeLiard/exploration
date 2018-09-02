@@ -9,7 +9,7 @@ export default {
 	addLayers({commit, state}) {
 		for (let layer of state.config.layers) {
 			const tfLayer = tf.layers.dense(layer.params)
-			commit('addHiddenLayer', tfLayer)
+			commit('addLayer', tfLayer)
 		}
 	},
 	compileModel({commit, state}) {

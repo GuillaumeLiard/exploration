@@ -5,6 +5,11 @@ export default {
 		state.model.layers.hiddenLayer = payload
 		return state
 	},
+	// addLayer(state, payload) {
+	// 	console.log('abc')
+	// 	// state.model.layers.hiddenLayer = payload
+	// 	return state
+	// },
 	setCurrentPrediction(state, payload) {
 		state.model.prediction = payload
 		return state
@@ -21,10 +26,11 @@ export default {
 		state.counter++
 	},
 	addLayer(state, payload) {
+		console.log('payload', payload)
 		state.model.model.add(payload)
 		return state
 	},
 	setCompileStatus(state, payload) {
 		state.model.compiled = payload
-	}	
+	}
 }
