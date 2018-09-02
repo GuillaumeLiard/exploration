@@ -4,6 +4,7 @@ export default  {
 		mode: 'manual'
 	},
 	model: {
+		compiled: false,
 		model: null,
 		layers: {
 			hiddenLayer: null,

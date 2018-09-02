@@ -24,11 +24,7 @@ export default {
 		state.model.model.add(payload)
 		return state
 	},
-	compileModel(state, payload) {
-		state.model.model.compile({
-			optimizer: tf.train.sgd(0.1),
-			loss: 'meanSquaredError'
-		})
-		return state
-	},
+	setCompileStatus(state, payload) {
+		state.model.compiled = payload
+	}	
 }

@@ -68,7 +68,7 @@
 					this.$store.commit('addLayer', this.$store.state.model.layers.outputLayer)
 				},
 				compileModel: function() {
-					this.$store.commit('compileModel')
+					this.$store.dispatch('compileModel')
 				},
 				initInputs: function() {
 					this.inputs = tf.tensor2d(this.$store.state.inputs2D)

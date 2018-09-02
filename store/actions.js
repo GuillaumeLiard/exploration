@@ -6,6 +6,13 @@ export default {
 			commit('increment')
 		}, 1000)
 	},
+	compileModel({commit, state}) {
+		state.model.model.compile({
+			optimizer: tf.train.sgd(0.1),
+			loss: 'meanSquaredError'
+		})
+		commit('setCompileStatus', true)
+	},
 	async train({ commit, state }) {
 		const history = await state.model.model.fit(
 			state.model.trainingSet.xs_tensor,
