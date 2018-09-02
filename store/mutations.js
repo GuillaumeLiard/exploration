@@ -1,10 +1,10 @@
 import * as tf from '@tensorflow/tfjs'
 
 export default {
-	addHiddenLayer(state, payload) {
-		state.model.layers.hiddenLayer = payload
-		return state
-	},
+	// addHiddenLayer(state, payload) {
+	// 	state.model.layers.hiddenLayer = payload
+	// 	return state
+	// },
 	// addLayer(state, payload) {
 	// 	console.log('abc')
 	// 	// state.model.layers.hiddenLayer = payload
@@ -26,8 +26,8 @@ export default {
 		state.counter++
 	},
 	addLayer(state, payload) {
-		console.log('payload', payload)
 		state.model.model.add(payload)
+		state.model.layers = [...state.model.layers, payload]
 		return state
 	},
 	setCompileStatus(state, payload) {

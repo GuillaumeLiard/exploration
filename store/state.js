@@ -3,7 +3,7 @@ export default  {
 	train: {
 		mode: 'manual'
 	},
-	loop: true,
+	loop: false,
 	config: {
 		layers: [
 			{
@@ -39,10 +39,7 @@ export default  {
 	model: {
 		compiled: false,
 		model: null,
-		layers: {
-			hiddenLayer: null,
-			outputLayer: null
-		},
+		layers: [],
 		// inputs: null,
 		prediction: null,
 		history: null,
