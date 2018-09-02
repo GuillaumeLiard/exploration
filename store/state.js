@@ -21,7 +21,20 @@ export default  {
 					activation: 'sigmoid'
 				}
 			}
-		]
+		],
+		optimizer: {
+			type: 'sgd',
+			params: {
+				rate: 0.1
+			}
+		},
+		loss: 'meanSquaredError',
+		training: {
+			params: {
+				batchSize: 10,
+				epochs: 3
+			}
+		}
 	},
 	model: {
 		compiled: false,

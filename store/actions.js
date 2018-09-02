@@ -14,8 +14,8 @@ export default {
 	},
 	compileModel({commit, state}) {
 		state.model.model.compile({
-			optimizer: tf.train.sgd(0.1),
-			loss: 'meanSquaredError'
+			optimizer: (state.config.optimizer.type === 'sgd') ? tf.train.sgd(state.config.optimizer.params.rate) : '',
+			loss: state.config.loss
 		})
 		commit('setCompileStatus', true)
 	},
@@ -23,10 +23,7 @@ export default {
 		const history = await state.model.model.fit(
 			state.model.trainingSet.xs_tensor,
 			state.model.trainingSet.ys_tensor,
-			{
-				batchSize: 10,
-				epochs: 3
-			}
+			state.config.training.params
 		)
 		commit('increment')
 		commit('setHistory', history)
