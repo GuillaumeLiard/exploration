@@ -32,5 +32,8 @@ export default {
 	},
 	setCompileStatus(state, payload) {
 		state.model.compiled = payload
+	},
+	setLoop(state, payload) {
+		state.loop = payload
 	}
 }

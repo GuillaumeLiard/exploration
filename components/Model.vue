@@ -4,6 +4,7 @@
 		<button @click="start">
 			start
 		</button>
+		<LoopCheckbox />
 		<p>
 			iterations : {{counter()}}
 		</p>
@@ -25,6 +26,7 @@
 	import * as tf from '@tensorflow/tfjs'
 	import Inputs from '~/components/Inputs'
 	import Prediction from '~/components/Prediction2D'
+	import LoopCheckbox from '~/components/LoopCheckbox'
 	// import Button from '~/components/Button'
 	import Info from '~/components/Info'
 
@@ -32,6 +34,7 @@
 			components: {
 				Inputs,
 				Prediction,
+				LoopCheckbox,
 				// Button,
 				Info
 			},
@@ -53,6 +56,9 @@
 				start: function() {
 					this.$store.dispatch('trainLoop')
 					this.$store.dispatch('predictLoop')
+				},
+				stop: function() {
+					this.$store.commit('pauseLoop')
 				},
 				train: function() {
 					this.$store.dispatch('train')

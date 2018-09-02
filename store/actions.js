@@ -42,7 +42,7 @@ export default {
 		)
 		commit('increment')
 		commit('setHistory', history)
-		dispatch('trainLoop')
+		if (state.loop) dispatch('trainLoop')
 	},
 	async predict({ commit, state }) {
 		const prediction = await state.model.model.predict(tf.tensor2d(state.inputs2D)).data()
@@ -51,6 +51,6 @@ export default {
 	async predictLoop({ commit, dispatch, state }) {
 		const prediction = await state.model.model.predict(tf.tensor2d(state.inputs2D)).data()
 		commit('setCurrentPrediction', prediction)
-		dispatch('predictLoop')
+		if (state.loop) dispatch('predictLoop')
 	},
 }
