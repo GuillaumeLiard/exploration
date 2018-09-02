@@ -14,13 +14,13 @@ export default  {
 					activation: 'sigmoid'
 				}
 			},
-			{
-				type: 'dense',
-				params: {
-					units: 1,
-					activation: 'sigmoid'
-				}
-			}
+			// {
+			// 	type: 'dense',
+			// 	params: {
+			// 		units: 1,
+			// 		activation: 'sigmoid'
+			// 	}
+			// }
 		],
 		optimizer: {
 			type: 'sgd',
@@ -42,6 +42,7 @@ export default  {
 		layers: [],
 		// inputs: null,
 		prediction: null,
+		weights: null,
 		history: null,
 
 		// function OR

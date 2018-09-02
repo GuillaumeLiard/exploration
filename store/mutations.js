@@ -14,6 +14,10 @@ export default {
 		state.model.prediction = payload
 		return state
 	},
+	setCurrentWeights(state, payload) {
+		state.model.weights = payload
+		return state
+	},
 	setHistory(state, payload) {
 		state.model.history = payload
 		return state

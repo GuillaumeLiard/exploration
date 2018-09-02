@@ -28,14 +28,19 @@ export default {
 		if (state.loop) dispatch('train')
 	},
 	async predict({ commit, dispatch, state }) {
-		console.log('predict', tf.memory().numTensors)
+		// console.log('predict', tf.memory().numTensors)
 		const inputs = tf.tensor2d(state.inputs2D)
 		const prediction = state.model.model.predict(inputs)
 		const predictionData = await prediction.data()
 		tf.dispose(inputs)
 		tf.dispose(prediction)
 		commit('setCurrentPrediction', predictionData)
-		// console.log(state.model.model.getWeights())
+		const weights = state.model.model.getWeights()
+		let weightsData = [];
+		for (let weight of weights) {
+			weightsData = [...weightsData, await weight.data()]
+		}
+		commit('setCurrentWeights', weightsData)
 		if (state.loop) dispatch('predict')
 	},
 }
