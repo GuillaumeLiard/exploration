@@ -1,11 +1,6 @@
 import * as tf from '@tensorflow/tfjs'
 
 export default {
-	incrementAsync({ commit }) {
-		setTimeout(() => {
-			commit('increment')
-		}, 1000)
-	},
 	addLayers({commit, state}) {
 		for (let layer of state.config.layers) {
 			const tfLayer = tf.layers.dense(layer.params)
