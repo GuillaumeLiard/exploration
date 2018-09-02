@@ -37,7 +37,8 @@
 			},
 			mounted: function() {
 				console.log(this.$store)
-				this.initHiddenLayer()
+				this.$store.dispatch('addLayers')
+				// this.initHiddenLayer()
 				this.initOutputLayer()
 				this.initModel()
 				this.compileModel()

@@ -3,6 +3,18 @@ export default  {
 	train: {
 		mode: 'manual'
 	},
+	config: {
+		layers: [
+			{
+				type: 'dense',
+				params: {
+					units: 1,
+					inputShape: [2],
+					activation: 'sigmoid'
+				}
+			}
+		]
+	},
 	model: {
 		compiled: false,
 		model: null,
