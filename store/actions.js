@@ -19,7 +19,7 @@ export default {
 		})
 		commit('setCompileStatus', true)
 	},
-	async train({ commit, state }) {
+	async train({ commit, dispatch, state }) {
 		const history = await state.model.model.fit(
 			state.model.trainingSet.xs_tensor,
 			state.model.trainingSet.ys_tensor,
@@ -30,27 +30,11 @@ export default {
 		)
 		commit('increment')
 		commit('setHistory', history)
+		if (state.loop) dispatch('train')
 	},
-	async trainLoop({ commit, dispatch, state }) {
-		const history = await state.model.model.fit(
-			state.model.trainingSet.xs_tensor,
-			state.model.trainingSet.ys_tensor,
-			{
-				batchSize: 10,
-				epochs: 3
-			}
-		)
-		commit('increment')
-		commit('setHistory', history)
-		if (state.loop) dispatch('trainLoop')
-	},
-	async predict({ commit, state }) {
+	async predict({ commit, dispatch, state }) {
 		const prediction = await state.model.model.predict(tf.tensor2d(state.inputs2D)).data()
 		commit('setCurrentPrediction', prediction)
-	},
-	async predictLoop({ commit, dispatch, state }) {
-		const prediction = await state.model.model.predict(tf.tensor2d(state.inputs2D)).data()
-		commit('setCurrentPrediction', prediction)
-		if (state.loop) dispatch('predictLoop')
+		if (state.loop) dispatch('predict')
 	},
 }

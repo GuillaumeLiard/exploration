@@ -8,15 +8,8 @@
 		<p>
 			iterations : {{counter()}}
 		</p>
-		<!-- <button @click="train">
-			train :
-		</button>
-		<button @click="predict">
-			predict :
-		</button> -->
 		<div class="face2face">
-			<!-- <Inputs/> -->
-			<Prediction/>
+			<Prediction />
 		</div>
 		<Info />
 	</div>
@@ -27,7 +20,6 @@
 	import Inputs from '~/components/Inputs'
 	import Prediction from '~/components/Prediction2D'
 	import LoopCheckbox from '~/components/LoopCheckbox'
-	// import Button from '~/components/Button'
 	import Info from '~/components/Info'
 
 		export default {
@@ -35,7 +27,6 @@
 				Inputs,
 				Prediction,
 				LoopCheckbox,
-				// Button,
 				Info
 			},
 			mounted: function() {
@@ -54,16 +45,7 @@
 					this.$store.state.model.trainingSet.ys_tensor = tf.tensor2d(this.$store.state.model.trainingSet.ys)
 				},
 				start: function() {
-					this.$store.dispatch('trainLoop')
-					this.$store.dispatch('predictLoop')
-				},
-				stop: function() {
-					this.$store.commit('pauseLoop')
-				},
-				train: function() {
 					this.$store.dispatch('train')
-				},
-				predict: function() {
 					this.$store.dispatch('predict')
 				}
 			}
