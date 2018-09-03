@@ -11,6 +11,7 @@
 		<div class="face2face">
 			<Prediction />
 		</div>
+			Loss (click on it) 
 		<Loss />
 		<Info />
 	</div>

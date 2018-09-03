@@ -3,7 +3,7 @@ export default  {
 	train: {
 		mode: 'manual'
 	},
-	loop: false,
+	loop: true,
 	config: {
 		layers: [
 			{

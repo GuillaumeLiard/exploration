@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-		"start": "nuxt",
+    "start": "nuxt",
     "build": "nuxt build",
     "launch": "nuxt start",
     "generate": "DEPLOY_ENV=GH_PAGES nuxt generate",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "^0.12.5",
+    "d3-scale": "^2.1.2",
     "nuxt": "^1.0.0"
   },
   "devDependencies": {
