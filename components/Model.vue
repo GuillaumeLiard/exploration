@@ -11,6 +11,7 @@
 		<div class="face2face">
 			<Prediction />
 		</div>
+		<Loss />
 		<Info />
 	</div>
 </template>
@@ -21,13 +22,15 @@
 	import Prediction from '~/components/Prediction2D'
 	import LoopCheckbox from '~/components/LoopCheckbox'
 	import Info from '~/components/Info'
+	import Loss from '~/components/Loss'
 
 		export default {
 			components: {
 				Inputs,
 				Prediction,
 				LoopCheckbox,
-				Info
+				Info,
+				Loss
 			},
 			mounted: function() {
 				this.$store.commit('createModel', tf.sequential())

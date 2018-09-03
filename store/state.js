@@ -32,7 +32,7 @@ export default  {
 		training: {
 			params: {
 				batchSize: 10,
-				epochs: 3
+				epochs: 1
 			}
 		}
 	},
@@ -44,7 +44,7 @@ export default  {
 		prediction: null,
 		weights: null,
 		history: null,
-
+		combinedHistory: [],
 		// function OR
 		trainingSet: {
 			// [A, B]
