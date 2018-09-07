@@ -19,7 +19,7 @@ export default {
 			canvasNeedsUpdate: false,
 			domain: {
 				x: [0, 20],
-				y: [-0.5, 0.5]
+				y: [0, 1]
 			},
 			range: {
 				x: {
@@ -44,7 +44,7 @@ export default {
 		historyLength: function() {
 			this.canvasNeedsUpdate = true
 			if (this.scaleX(this.historyLength) > this.width * this.range.x.maxPercentWidth) {
-				const double = parseInt(1.618 * this.historyLength)
+				const double = parseInt(3 * 1.618 * this.historyLength)
 				this.domain.x = [0, double]
 				this.makeScales()
 				this.clearCanvas()
