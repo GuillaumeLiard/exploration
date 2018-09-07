@@ -13,11 +13,14 @@
 		mounted: function() {
 			this.init()
 		},
+		computed: {
+
+		},
 		methods: {
 			init: function() {
 				this.ctx = this.$refs.canvasLoss.getContext('2d')
 				this.makeScales()
-				this.drawLines()
+				this.drawLines();
 			},
 			makeScales: function() {
 				this.scaleX = scaleLinear()
