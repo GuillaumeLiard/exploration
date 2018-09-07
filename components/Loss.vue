@@ -26,15 +26,15 @@ export default {
 	computed: {
 		// ...mapGetters([
 		// 	{
-		// 		historyLength: 'getHistoryLength'
+		// 		historyLength: 'getFullHistoryLength'
 		// 	}
 		// ])
 		historyLength () {
-			return this.$store.getters.getHistoryLength
+			return this.$store.getters.getFullHistoryLength
 		}
 	},
 	watch: {
-		getHistoryLength: function() {
+		getFullHistoryLength: function() {
 			console.log('abc')
 		}
 	},
@@ -55,7 +55,7 @@ export default {
 		drawLines: function() {
 			this.ctx.beginPath()
 			if (this.$store.state.model.history) {
-				const losses = this.$store.state.model.combinedHistory.map(h => h.history.loss[0])
+				const losses = this.$store.state.model.fullHistory.map(h => h.history.loss[0])
 				this.ctx.moveTo(0, 0)
 				for (let [i, loss] of losses.entries()) {
 					this.ctx.lineTo(this.scaleX(i), this.height - this.scaleY(loss))

@@ -20,7 +20,7 @@ export default {
 	},
 	setHistory(state, payload) {
 		state.model.history = payload
-		state.model.combinedHistory = [...state.model.combinedHistory, payload]
+		state.model.fullHistory = [...state.model.fullHistory, payload]
 		return state
 	},
 	createModel(state, payload) {

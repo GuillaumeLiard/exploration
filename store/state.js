@@ -44,7 +44,7 @@ export default  {
 		prediction: null,
 		weights: null,
 		history: null,
-		combinedHistory: [],
+		fullHistory: [],
 		// function OR
 		trainingSet: {
 			// [A, B]

@@ -1,6 +1,6 @@
 export default {
-	getHistoryLength: (state) => {
-		console.log(state.model.combinedHistory)
-		return state.model.combinedHistory ? state.model.combinedHistory.length : 0
+	getFullHistoryLength: (state) => {
+		console.log(state.model.fullHistory)
+		return state.model.fullHistory ? state.model.fullHistory.length : 0
 	}
 }
