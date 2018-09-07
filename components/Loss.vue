@@ -1,9 +1,8 @@
 <template>
 	<div>
-		<canvas @click="drawLines" ref="canvasLoss" :width="width + 'px'" :height="height + 'px'"></canvas>
+		<canvas ref="canvasLoss" :width="width + 'px'" :height="height + 'px'"></canvas>
 		<p>
-
-			{{historyLength}}
+			Number of loss data points {{historyLength}}
 		</p>
 	</div>
 </template>
@@ -17,6 +16,7 @@ export default {
 		return {
 			width: 1000,
 			height: 400,
+			canvasNeedsUpdate: false
 			// historyLength: 10
 		}
 	},
@@ -28,16 +28,16 @@ export default {
 			historyLength: 'getFullHistoryLength'
 		})
 	},
-	// watch: {
-	// 	getFullHistoryLength: function() {
-	// 		console.log('abc')
-	// 	}
-	// },
+	watch: {
+		historyLength: function() {
+			this.canvasNeedsUpdate = true
+		}
+	},
 	methods: {
 		init: function() {
 			this.ctx = this.$refs.canvasLoss.getContext('2d')
 			this.makeScales()
-			this.drawLines()
+			this.loopDrawLines()
 		},
 		makeScales: function() {
 			this.scaleX = scaleLinear()
@@ -47,7 +47,16 @@ export default {
 			.domain([-0.5,0.5])
 			.range([0, this.height])
 		},
+		loopDrawLines: function() {
+			if (this.canvasNeedsUpdate) {
+				this.drawLines()
+				this.canvasNeedsUpdate = false
+			}
+			requestAnimationFrame(this.loopDrawLines)
+
+		},
 		drawLines: function() {
+			console.log('drawLines', this.historyLength)
 			this.ctx.beginPath()
 			if (this.$store.state.model.history) {
 				const losses = this.$store.state.model.fullHistory.map(h => h.history.loss[0])
