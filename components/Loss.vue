@@ -24,20 +24,15 @@ export default {
 		this.init()
 	},
 	computed: {
-		// ...mapGetters([
-		// 	{
-		// 		historyLength: 'getFullHistoryLength'
-		// 	}
-		// ])
-		historyLength () {
-			return this.$store.getters.getFullHistoryLength
-		}
+		...mapGetters({
+			historyLength: 'getFullHistoryLength'
+		})
 	},
-	watch: {
-		getFullHistoryLength: function() {
-			console.log('abc')
-		}
-	},
+	// watch: {
+	// 	getFullHistoryLength: function() {
+	// 		console.log('abc')
+	// 	}
+	// },
 	methods: {
 		init: function() {
 			this.ctx = this.$refs.canvasLoss.getContext('2d')
