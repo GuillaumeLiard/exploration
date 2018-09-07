@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<canvas ref="canvasLoss" :width="width + 'px'" :height="height + 'px'"></canvas>
 		<p>
-			Number of loss data points {{historyLength}}
+			Last loss value {{lastLossValue}}
 		</p>
+		<canvas ref="canvasLoss" :width="width + 'px'" :height="height + 'px'"></canvas>
 	</div>
 </template>
 <script>
@@ -16,21 +16,39 @@ export default {
 		return {
 			width: 1000,
 			height: 400,
-			canvasNeedsUpdate: false
+			canvasNeedsUpdate: false,
+			domain: {
+				x: [0, 20],
+				y: [-0.5, 0.5]
+			},
+			range: {
+				x: {
+					maxPercentWidth: 0.8
+				}
+			}
+
 			// historyLength: 10
 		}
 	},
 	mounted: function() {
 		this.init()
+
 	},
 	computed: {
 		...mapGetters({
-			historyLength: 'getFullHistoryLength'
+			historyLength: 'getFullHistoryLength',
+			lastLossValue: 'getLastLossValueHuman'
 		})
 	},
 	watch: {
 		historyLength: function() {
 			this.canvasNeedsUpdate = true
+			if (this.scaleX(this.historyLength) > this.width * this.range.x.maxPercentWidth) {
+				const double = parseInt(1.618 * this.historyLength)
+				this.domain.x = [0, double]
+				this.makeScales()
+				this.clearCanvas()
+			}
 		}
 	},
 	methods: {
@@ -41,10 +59,10 @@ export default {
 		},
 		makeScales: function() {
 			this.scaleX = scaleLinear()
-			.domain([0, 2000])
+			.domain(this.domain.x)
 			.range([0, this.width])
 			this.scaleY = scaleLinear()
-			.domain([-0.5,0.5])
+			.domain(this.domain.y)
 			.range([0, this.height])
 		},
 		loopDrawLines: function() {
@@ -56,7 +74,6 @@ export default {
 
 		},
 		drawLines: function() {
-			console.log('drawLines', this.historyLength)
 			this.ctx.beginPath()
 			if (this.$store.state.model.history) {
 				const losses = this.$store.state.model.fullHistory.map(h => h.history.loss[0])
@@ -66,6 +83,9 @@ export default {
 				}
 			}
 			this.ctx.stroke()
+		},
+		clearCanvas: function() {
+			this.ctx.clearRect(0, 0, this.width, this.height)
 		}
 	}
 }
