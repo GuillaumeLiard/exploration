@@ -25,7 +25,8 @@ export default {
 				x: {
 					maxPercentWidth: 0.8
 				}
-			}
+			},
+			lastDrawnIndex: 0
 
 			// historyLength: 10
 		}
@@ -48,14 +49,15 @@ export default {
 				this.domain.x = [0, double]
 				this.makeScales()
 				this.clearCanvas()
+				this.lastDrawnIndex = 0
 			}
+			requestAnimationFrame(this.drawLines)
 		}
 	},
 	methods: {
 		init: function() {
 			this.ctx = this.$refs.canvasLoss.getContext('2d')
 			this.makeScales()
-			this.loopDrawLines()
 		},
 		makeScales: function() {
 			this.scaleX = scaleLinear()
@@ -65,24 +67,18 @@ export default {
 			.domain(this.domain.y)
 			.range([0, this.height])
 		},
-		loopDrawLines: function() {
-			if (this.canvasNeedsUpdate) {
-				this.drawLines()
-				this.canvasNeedsUpdate = false
-			}
-			requestAnimationFrame(this.loopDrawLines)
-
-		},
 		drawLines: function() {
 			this.ctx.beginPath()
 			if (this.$store.state.model.history) {
 				const losses = this.$store.state.model.fullHistory.map(h => h.history.loss[0])
-				this.ctx.moveTo(0, 0)
-				for (let [i, loss] of losses.entries()) {
-					this.ctx.lineTo(this.scaleX(i), this.height - this.scaleY(loss))
+				const toDrawLosses = losses.filter((loss, index) => index >= this.lastDrawnIndex)
+				this.ctx.moveTo(this.scaleX(this.lastDrawnIndex), this.height - this.scaleY(losses[this.lastDrawnIndex]))
+				for (let [i, loss] of toDrawLosses.entries()) {
+					this.ctx.lineTo(this.scaleX(this.lastDrawnIndex + i + 1), this.height - this.scaleY(loss))
 				}
+				this.ctx.stroke()
+				this.lastDrawnIndex++
 			}
-			this.ctx.stroke()
 		},
 		clearCanvas: function() {
 			this.ctx.clearRect(0, 0, this.width, this.height)
