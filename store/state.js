@@ -25,7 +25,7 @@ export default  {
 		optimizer: {
 			type: 'sgd',
 			params: {
-				rate: 0.1
+				rate: 0.02
 			}
 		},
 		loss: 'meanSquaredError',

@@ -6,6 +6,6 @@ export default {
 		return state.model.history ? state.model.history.history.loss[0] : -1
 	},
 	getLastLossValueHuman: (state, getters) => {
-		return getters.getLastLossValue.toFixed(2)
+		return getters.getLastLossValue.toFixed(3)
 	}
 }
