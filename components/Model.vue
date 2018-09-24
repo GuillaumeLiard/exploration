@@ -11,6 +11,7 @@
 		<div class="face2face">
 			<Prediction />
 		</div>
+		<Layers />
 		<Loss />
 		<Info />
 	</div>
@@ -23,6 +24,7 @@
 	import LoopCheckbox from '~/components/LoopCheckbox'
 	import Info from '~/components/Info'
 	import Loss from '~/components/Loss'
+	import Layers from '~/components/Layers'
 
 		export default {
 			components: {
@@ -30,7 +32,8 @@
 				Prediction,
 				LoopCheckbox,
 				Info,
-				Loss
+				Loss,
+				Layers
 			},
 			mounted: function() {
 				this.$store.commit('createModel', tf.sequential())

@@ -7,5 +7,8 @@ export default {
 	},
 	getLastLossValueHuman: (state, getters) => {
 		return getters.getLastLossValue.toFixed(3)
+	},
+	getWeights: (state) => {
+		return state.model.weights;
 	}
 }
